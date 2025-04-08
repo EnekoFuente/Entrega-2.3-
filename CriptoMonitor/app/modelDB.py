@@ -2,6 +2,9 @@ import sqlite3
 
 DB_PATH = 'crypto.db'
 
+def get_connection():
+    return sqlite3.connect(DB_PATH)
+
 def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -15,17 +18,17 @@ def init_db():
     conn.commit()
     conn.close()
 
-def get_all_prices():
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute("SELECT name, value FROM prices")
-    rows = cursor.fetchall()
-    conn.close()
-    return [{'name': name, 'value': value} for name, value in rows]
-
 def add_price(name, value):
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("INSERT INTO prices (name, value) VALUES (?, ?)", (name, value))
     conn.commit()
     conn.close()
+
+def get_all_prices():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT name, value FROM prices")
+    prices = cursor.fetchall()
+    conn.close()
+    return [{'name': name, 'value': value} for name, value in prices]

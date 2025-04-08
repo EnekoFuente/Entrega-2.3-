@@ -1,8 +1,8 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Flask, Blueprint, jsonify, request, render_template
 from .modelDB import get_all_prices, add_price
 
-api_bp = Blueprint('api_bp', __name__, template_folder='../templates')
-
+app = Flask(__name__)
+api_bp = Blueprint('api_bp', __name__)
 
 @api_bp.route('/prices', methods=['GET'])
 def get_prices():
@@ -19,5 +19,7 @@ def create_price():
 @api_bp.route('/')
 def home():
     return render_template('prices.html')
+
+app.register_blueprint(api_bp)
 
 

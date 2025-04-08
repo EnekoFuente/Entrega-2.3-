@@ -3,6 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Precios de Criptomonedas</title>
+  <style>
+    h1 {
+      color:rgb(228, 162, 63);
+      text-align: center;
+    }
+
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color:rgb(228, 162, 63);
+      color: white;
+    }
+
+    .table-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
   <script>
     async function fetchPrices() {
       const response = await fetch('/prices');
@@ -25,16 +57,19 @@
   </script>
 </head>
 <body>
-  <h1>Precios de las Criptomonedas</h1>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>Criptomoneda</th>
-        <th>Precio (USD)</th>
-      </tr>
-    </thead>
-    <tbody id="crypto-table">
-    </tbody>
-  </table>
+  <div class="table-container">
+    <h1>Precios de las Criptomonedas</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Criptomoneda</th>
+          <th>Precio (USD)</th>
+        </tr>
+      </thead>
+      <tbody id="crypto-table">
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
+
