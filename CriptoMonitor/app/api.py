@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, render_template
-from .models import get_all_prices, add_price
+from .modelDB import get_all_prices, add_price
 
 api_bp = Blueprint('api_bp', __name__, template_folder='../templates')
 
