@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Precios de Criptomonedas</title>
+  <script>
+    async function fetchPrices() {
+      const response = await fetch('/prices');
+      const data = await response.json();
+
+      const tableBody = document.getElementById('crypto-table');
+      tableBody.innerHTML = '';
+
+      data.forEach(item => {
+        const row = `<tr>
+                       <td>${item.name}</td>
+                       <td>${item.value}</td>
+                     </tr>`;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    // Llamar cada 5 segundos
+    setInterval(fetchPrices, 10000);
+    window.onload = fetchPrices;
+  </script>
+</head>
+<body>
+  <h1>Precios de las Criptomonedas</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Criptomoneda</th>
+        <th>Precio (USD)</th>
+      </tr>
+    </thead>
+    <tbody id="crypto-table">
+      <!-- Datos aquí -->
+    </tbody>
+  </table>
+</body>
+</html>
